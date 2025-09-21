@@ -8,20 +8,17 @@ import {
   onSnapshot,
   Timestamp,
 } from "firebase/firestore";
+import { motion, AnimatePresence } from "framer-motion";
 
 const QAPage = () => {
   const [question, setQuestion] = useState("");
-  const [group, setGroup] = useState(""); // Thêm state cho tên nhóm
+  const [group, setGroup] = useState("");
   const [questions, setQuestions] = useState<
     { id: string; text: string; group: string; createdAt: Timestamp }[]
   >([]);
 
-  // Lấy dữ liệu realtime từ Firestore
   useEffect(() => {
-    const q = query(
-      collection(db, "questions"),
-      orderBy("createdAt", "desc")
-    );
+    const q = query(collection(db, "questions"), orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setQuestions(
         snapshot.docs.map((doc) => ({
@@ -44,19 +41,31 @@ const QAPage = () => {
         createdAt: Timestamp.now(),
       });
       setQuestion("");
-      // setGroup(""); // Nếu muốn xóa tên nhóm sau khi gửi thì bỏ comment dòng này
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#f4f7ff] flex flex-col items-center pt-32 px-2">
-      <div className="w-full max-w-2xl flex flex-col items-center">
+    <motion.div
+      className="min-h-screen bg-[#f4f7ff] flex flex-col items-center pt-32 px-2"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      <motion.div
+        className="w-full max-w-2xl flex flex-col items-center"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
         <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-center text-[#2a2e6e] drop-shadow-lg">
           Q &amp; A
         </h1>
-        <form
+        <motion.form
           onSubmit={handleSubmit}
           className="flex w-full max-w-xl gap-2 mb-8"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
           <input
             type="text"
@@ -74,34 +83,55 @@ const QAPage = () => {
             onChange={(e) => setQuestion(e.target.value)}
             required
           />
-          <button
+          <motion.button
             type="submit"
             className="bg-[#3a3f8f] text-white px-6 py-3 rounded-lg text-lg font-semibold shadow hover:bg-[#2a2e6e] transition"
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
           >
             Gửi
-          </button>
-        </form>
-        <div className="w-full max-w-xl">
+          </motion.button>
+        </motion.form>
+
+        <motion.div
+          className="w-full max-w-xl"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+        >
           {questions.length === 0 && (
             <p className="text-gray-500 text-center text-lg mt-8">
               Chưa có câu hỏi nào.
             </p>
           )}
-          {questions.map((q) => (
-            <div
-              key={q.id}
-              className="bg-white rounded-xl shadow p-5 mb-4 border border-[#e0e7ff] text-[#2a2e6e] text-lg"
-            >
-              <div className="mb-1 text-[#6e7fdc] font-semibold">
-                Nhóm: {q.group}
-              </div>
-              <strong className="block mb-1 text-[#3a3f8f]">Câu hỏi:</strong>
-              {q.text}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+          <AnimatePresence>
+            {questions.map((q) => (
+              <motion.div
+                key={q.id}
+                className="bg-white rounded-xl shadow p-5 mb-4 border border-[#e0e7ff] text-[#2a2e6e] text-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="mb-1 text-[#6e7fdc] font-semibold">
+                  Nhóm: {q.group}
+                </div>
+                <strong className="block mb-1 text-[#3a3f8f]">Câu hỏi:</strong>
+                {q.text}
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
