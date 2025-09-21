@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import IntroPage from "./pages/IntroPage";
 import QuizPage from "./pages/QuizPage";
 import ChatbotPage from "./pages/ChatbotPage";
@@ -15,7 +16,8 @@ function App() {
         <main className="flex-1 flex flex-col justify-center px-0 w-full">
           <div className="w-full flex-1 flex flex-col">
             <Routes>
-              <Route path="/" element={<IntroPage />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/intro" element={<IntroPage />} />
               <Route path="/quiz" element={<QuizPage />} />
               <Route path="/chatbot" element={<ChatbotPage />} />
               <Route path="/case-study" element={<CaseStudyPage />} />
