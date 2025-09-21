@@ -5,6 +5,7 @@ import ChatbotPage from "./pages/ChatbotPage";
 import CaseStudyPage from "./pages/CaseStudyPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import QAPage from "./pages/QAPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path="/quiz" element={<QuizPage />} />
               <Route path="/chatbot" element={<ChatbotPage />} />
               <Route path="/case-study" element={<CaseStudyPage />} />
+              <Route path="/qa" element={<QAPage />} />
             </Routes>
           </div>
         </main>

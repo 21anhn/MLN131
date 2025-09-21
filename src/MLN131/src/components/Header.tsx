@@ -7,6 +7,7 @@ const menu = [
   { label: "Quiz", to: "/quiz" },
   { label: "Chatbot", to: "/chatbot" },
   { label: "Case Study", to: "/case-study" },
+  { label: "Q & A", to: "/qa" }, // Thêm Q & A vào menu
 ];
 
 const Header: React.FC = () => {
