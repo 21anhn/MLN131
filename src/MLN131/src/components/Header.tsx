@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import Logo from "../../public/logo.webp";
 
 const menu = [
+  { label: "Home", to: "/intro" },
   { label: "Quiz", to: "/quiz" },
   { label: "Chatbot", to: "/chatbot" },
   { label: "Case Study", to: "/case-study" },
-  { label: "Q & A", to: "/qa" }, // Thêm Q & A vào menu
+  { label: "Q&A", to: "/qa" }, // Thêm Q & A vào menu
 ];
 
 const Header: React.FC = () => {

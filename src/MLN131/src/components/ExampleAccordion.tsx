@@ -1,3 +1,4 @@
+// src/components/ExampleAccordion.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
@@ -5,24 +6,24 @@ import { ChevronDown } from "lucide-react";
 
 const aiApplications = [
   {
-    title: "Chatbot hỏi đáp giáo trình Marx-Lenin",
+    title: "Tạo Quiz tự động",
     content:
-      "Ứng dụng AI để xây dựng chatbot trả lời các câu hỏi về Dân chủ xã hội chủ nghĩa và Nhà nước pháp quyền dựa trên dữ liệu giáo trình, tích hợp phản hồi giọng nói (Text-to-Speech).",
+      "AI được sử dụng để tự động tạo ra bộ 15 câu hỏi trắc nghiệm cùng với gợi ý và giải thích chi tiết, giúp đội ngũ phát triển xây dựng nội dung ôn tập nhanh chóng và hiệu quả hơn.",
   },
   {
-    title: "Quiz ôn tập tự động chấm điểm",
+    title: "Chatbot hỏi đáp sử dụng Gemini",
     content:
-      "AI hỗ trợ sinh viên luyện tập lý thuyết với quiz trắc nghiệm, tự động chấm điểm, nhận diện câu trả lời sai và đưa ra phản hồi giúp cải thiện kiến thức.",
+      "Tích hợp mô hình AI Gemini để xây dựng chatbot thông minh. Chatbot này có khả năng trả lời các câu hỏi về giáo trình bằng cả giọng nói (Text-to-Speech) và văn bản, mang lại trải nghiệm tương tác tự nhiên và tiện lợi cho người học.",
   },
   {
-    title: "Gợi ý nội dung động & hiệu ứng tương tác",
+    title: "Tối ưu hóa quy trình phát triển",
     content:
-      "Sử dụng AI và animation để cá nhân hóa trải nghiệm học tập, ví dụ: hiệu ứng fade-in, parallax, và các tương tác động giúp tăng sự tập trung và hứng thú.",
+      "Các công cụ AI giúp tối ưu hóa nhiều khâu trong quá trình phát triển website, từ việc tạo nội dung, thiết kế giao diện đến tối ưu code, giúp website được hoàn thiện nhanh chóng và chất lượng cao.",
   },
   {
-    title: "Tích hợp dữ liệu học thuật mở rộng",
+    title: "Cá nhân hóa trải nghiệm học tập",
     content:
-      "AI có thể mở rộng truy xuất dữ liệu từ các nguồn học thuật, giúp người học tiếp cận thông tin đa chiều, cập nhật và chính xác hơn.",
+      "Website sử dụng AI để gợi ý nội dung phù hợp với người dùng. Các hiệu ứng động và tương tác mượt mà (như fade-in, parallax) được tạo ra để cá nhân hóa trải nghiệm, tăng sự tập trung và hứng thú của người học.",
   },
 ];
 
@@ -30,7 +31,7 @@ const ExampleAccordion: React.FC = () => {
   return (
     <section className="relative z-10 w-full flex flex-col items-center justify-center py-14 px-4 bg-blue-50/80">
       <motion.h2
-        className="text-2xl md:text-3xl font-bold text-blue-800 mb-7 text-center drop-shadow"
+        className="text-2xl md:text-3xl font-bold text-blue-800 mb-2 text-center drop-shadow"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -38,6 +39,16 @@ const ExampleAccordion: React.FC = () => {
       >
         Ứng dụng AI trong website này
       </motion.h2>
+      <motion.p
+        className="text-sm md:text-base text-gray-600 mb-7 text-center italic"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
+        *Lưu ý: Nội dung trả lời và quiz được tạo dựa trên Giáo trình Chủ nghĩa
+        xã hội khoa học năm 2021.
+      </motion.p>
       <Accordion.Root
         type="single"
         collapsible

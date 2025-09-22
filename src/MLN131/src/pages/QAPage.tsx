@@ -58,7 +58,7 @@ const QAPage = () => {
         transition={{ duration: 0.7 }}
       >
         <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-center text-[#2a2e6e] drop-shadow-lg">
-          Q &amp; A
+          Q&A
         </h1>
         <motion.form
           onSubmit={handleSubmit}
